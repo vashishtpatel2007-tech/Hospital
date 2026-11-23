@@ -1,0 +1,16 @@
+id: INFO-01
+title: Anonymous caller asks where cardiology is and who speaks Kannada
+category: information
+calls:
+  - greeting_lang: en
+    script:
+      - "Hello, where is the cardiology department in your hospital?"
+      - "And which heart doctors there can speak Kannada?"
+      - "Okay, thank you, that's all."
+expect:
+  final_state_in: [CONTACT, INFO_ONLY]
+  tools_called_any: [list_departments, find_doctors]
+  tools_not_called: [verify_identity, register_patient, start_booking, escalate]
+  must_say_any: ["2nd floor", "second floor"]
+  escalated: false
+  ai_disclosure_first: true

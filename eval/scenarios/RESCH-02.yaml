@@ -1,0 +1,21 @@
+id: RESCH-02
+title: Returning patient moves his Thursday appointment to next week (Hinglish)
+category: reschedule
+calls:
+  - phone: "+919845012345"
+    greeting_lang: hi-en
+    script:
+      - "Haan ji, mera Thursday ka appointment hai Dr. Rao ke saath, usko agle hafte shift karna hai."
+    caller:
+      persona: "Ramesh Sharma, 58, speaks Hinglish, busy and a bit hurried."
+      goal: "Move your Thursday cardiology appointment with Dr. Suresh Rao to any day the week after. Accept the first slot that is offered for that week."
+      facts:
+        full name: Ramesh Sharma
+        date of birth: "{dob_spoken:P-1001}"
+    max_turns: 18
+expect:
+  final_state_in: [BOOKED]
+  tools_called: [verify_identity, start_reschedule, get_slots, hold_slot, book_appointment]
+  tools_not_called: [cancel_appointment, escalate]
+  rescheduled_for_patient: true
+  escalated: false

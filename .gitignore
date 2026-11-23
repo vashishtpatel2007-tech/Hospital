@@ -1,0 +1,26 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# local data and logs
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+logs/
+recordings/
+# eval run output (re-run to regenerate; copy the one you submit into docs/)
+eval/reports/
+
+# node
+node_modules/
+.next/
+
+.DS_Store

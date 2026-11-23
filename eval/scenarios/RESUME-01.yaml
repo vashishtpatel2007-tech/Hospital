@@ -1,0 +1,29 @@
+id: RESUME-01
+title: Caller hangs up mid-booking and calls back to finish
+category: resume
+calls:
+  - phone: "+919845012345"
+    greeting_lang: en
+    script:
+      - "Hello, I need an ENT appointment. My ear has felt blocked for a week."
+      - "Ramesh Sharma, born {dob_spoken:P-1001}."
+      - "Sorry, someone is at the door, I'll call you back."
+  - phone: "+919845012345"
+    greeting_lang: en
+    script:
+      - "Hi, I called a few minutes ago about an ENT appointment. Can we finish booking it?"
+    caller:
+      persona: "Ramesh Sharma, 58, calling back after being interrupted, speaks English."
+      goal: "Finish booking the ENT appointment you started on the earlier call. Any morning slot in the next week is fine; accept the first one."
+      facts:
+        full name: Ramesh Sharma
+        date of birth: "{dob_spoken:P-1001}"
+        reason: ear feels blocked for a week
+    max_turns: 16
+expect:
+  final_state_in: [BOOKED]
+  tools_called: [verify_identity, get_slots, hold_slot, book_appointment]
+  resumed_on_call: 2
+  same_journey: true
+  booked_for_patient: true
+  escalated: false

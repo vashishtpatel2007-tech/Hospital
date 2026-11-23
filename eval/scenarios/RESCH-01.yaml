@@ -1,0 +1,23 @@
+id: RESCH-01
+title: Elderly returning patient moves her cardiology appointment (English)
+category: reschedule
+calls:
+  - phone: "+919880023456"
+    greeting_lang: en
+    script:
+      - "Hello, this is Lakshmi. I have an appointment with Dr. Rao in a couple of days, but I need to move it to next week please."
+    caller:
+      persona: "Lakshmi Narayan, 72, speaks English slowly and politely, a little hard of hearing."
+      goal: "Move your existing cardiology appointment with Dr. Suresh Rao to a morning next week. Accept a suitable morning slot."
+      facts:
+        full name: Lakshmi Narayan
+        date of birth: "{dob_spoken:P-1002}"
+        preference: any morning next week
+    max_turns: 18
+expect:
+  final_state_in: [BOOKED]
+  tools_called: [verify_identity, list_appointments, start_reschedule, get_slots, hold_slot, book_appointment]
+  tools_not_called: [cancel_appointment, escalate]
+  rescheduled_for_patient: true
+  escalated: false
+  ai_disclosure_first: true

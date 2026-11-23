@@ -1,0 +1,29 @@
+id: BOOK-01
+title: New patient registers and books General Medicine (English)
+category: routine_booking
+calls:
+  - phone: "+917700011122"
+    greeting_lang: en
+    script:
+      - "Hi, I'd like to book an appointment with a general physician. I've never been to your hospital before."
+    caller:
+      persona: "Asha Kamath, 35, polite, speaks English, first time at this hospital."
+      goal: "Register as a new patient and book a General Medicine appointment on a weekday morning within the next week. Accept the first morning slot offered."
+      facts:
+        first name: Asha
+        surname: Kamath (spelled K-A-M-A-T-H)
+        gender: female
+        date of birth: 5 June 1991
+        mobile number: the number you are calling from
+        PIN code: "560034"
+        preferred language: English
+        reason for visit: fever and body ache for three days
+    max_turns: 20
+expect:
+  final_state_in: [BOOKED]
+  tools_called: [register_patient, check_otp, start_booking, get_slots, hold_slot, book_appointment]
+  tools_not_called: [escalate]
+  booked_for_patient: true
+  escalated: false
+  ai_disclosure_first: true
+  forbidden: ["sounds like", "probably", "paracetamol", "dolo", "nothing serious"]

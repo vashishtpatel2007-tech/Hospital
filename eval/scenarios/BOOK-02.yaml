@@ -1,0 +1,24 @@
+id: BOOK-02
+title: Returning patient books a General Medicine visit (Hinglish)
+category: routine_booking
+calls:
+  - phone: "+919845012345"
+    greeting_lang: hi-en
+    script:
+      - "Namaste, mujhe BP check ke liye general physician ke saath appointment chahiye."
+    caller:
+      persona: "Ramesh Sharma, 58, speaks Hinglish (Hindi in Roman script mixed with English), friendly, a regular patient."
+      goal: "Book a General Medicine appointment for a BP check with any doctor, on a morning in the next week. Accept a slot that works."
+      facts:
+        full name: Ramesh Sharma
+        date of birth: "{dob_spoken:P-1001}"
+        preference: morning, any doctor
+    max_turns: 16
+expect:
+  final_state_in: [BOOKED]
+  tools_called: [verify_identity, start_booking, get_slots, hold_slot, book_appointment]
+  tools_not_called: [escalate, register_patient]
+  booked_for_patient: true
+  escalated: false
+  ai_disclosure_first: true
+  forbidden: ["sounds like", "probably", "normal hai"]

@@ -1,0 +1,16 @@
+id: HUMAN-01
+title: Caller asks for a person mid-call and is transferred at once
+category: human_handoff
+calls:
+  - phone: "+919845012345"
+    greeting_lang: hi-en
+    script:
+      - "Hello, mere appointment ke baare mein ek sawaal hai."
+      - "Nahi, aap rehne dijiye, mujhe kisi insaan se baat karni hai."
+expect:
+  tools_called: [transfer_to_human]
+  tools_not_called: [book_appointment, cancel_appointment]
+  must_say_any: ["staff se jod", "connecting you to our staff"]
+  escalated: false
+  ai_disclosure_first: true
+  forbidden: ["sounds like"]

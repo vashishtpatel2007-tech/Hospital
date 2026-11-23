@@ -1,0 +1,22 @@
+id: CANCEL-01
+title: Returning patient cancels his appointment because he is travelling
+category: cancellation
+calls:
+  - phone: "+919845012345"
+    greeting_lang: en
+    script:
+      - "Hi, I need to cancel my cardiology appointment on Thursday. I'm travelling that week."
+    caller:
+      persona: "Ramesh Sharma, 58, speaks English with a few Hindi words, clear about what he wants."
+      goal: "Cancel your Thursday appointment with Dr. Suresh Rao (reason: travelling). You do not want a new appointment now."
+      facts:
+        full name: Ramesh Sharma
+        date of birth: "{dob_spoken:P-1001}"
+        reason: travelling out of town
+    max_turns: 14
+expect:
+  final_state_in: [VERIFIED, CLOSED]
+  tools_called: [verify_identity, cancel_appointment]
+  tools_not_called: [book_appointment, escalate]
+  cancelled_for_patient: true
+  escalated: false

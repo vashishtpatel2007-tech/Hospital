@@ -1,0 +1,21 @@
+id: WAIT-01
+title: No slot on the only day that works, so the patient joins the waitlist
+category: waitlist
+calls:
+  - phone: "+919900034567"
+    greeting_lang: en
+    script:
+      - "Hello, I'm Kavya Gowda. I want to see Dr. Anil Mehta, but I can only come on a Sunday."
+    caller:
+      persona: "Kavya Gowda, 34, works weekdays and Saturdays, speaks English and Kannada. Shares this phone with her father."
+      goal: "Get an appointment with Dr. Anil Mehta on a Sunday. If there is nothing on a Sunday, agree to join the waitlist for the next two weeks. Do not take a weekday or Saturday slot."
+      facts:
+        full name: Kavya Gowda
+        date of birth: "{dob_spoken:P-1003}"
+        reason: general health check-up
+    max_turns: 18
+expect:
+  final_state_in: [WAITLISTED]
+  tools_called: [verify_identity, start_booking, get_slots, join_waitlist]
+  tools_not_called: [book_appointment, escalate]
+  escalated: false
